@@ -1,11 +1,20 @@
 {
   "name": "unicode-lookup",
-  "module": "index.ts",
+  "module": "package/index.ts",
   "type": "module",
   "scripts": {
-    "pre-build": "mkdir ./dist; bun pre-build.ts"
+    "pre-build": "mkdir -p ./lib; bun pre-build.ts",
+    "prepublishOnly": "bun run build",
+    "build": "bun run pre-build; tsc ./index.ts --target esnext --moduleResolution bundler --resolveJsonModule --declaration --outDir ./lib"
   },
   "devDependencies": {
-    "bun-types": "^0.5.0"
-  }
+    "bun-types": "^0.5.0",
+    "typescript": "^5.0.4"
+  },
+  "repository": "https://github.com/SillyCoon/unicode-lookup",
+  "license": "ISC",
+  "files": [
+    "package/*"
+  ],
+  "author": "SillyCoon"
 }
