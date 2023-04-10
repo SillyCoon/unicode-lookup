@@ -12,5 +12,5 @@
     parsed[title] = code;
   });
 
-  await Bun.write(Bun.file('./unicode.json'), JSON.stringify(parsed, null, 2));
+  await Bun.write(Bun.file('./unicode.json'), JSON.stringify(parsed));
 })();
