@@ -1,0 +1,11 @@
+{
+  "name": "unicode-lookup",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "pre-build": "mkdir ./dist; bun pre-build.ts"
+  },
+  "devDependencies": {
+    "bun-types": "^0.5.0"
+  }
+}
