@@ -2,9 +2,7 @@ import unicode from './unicode.json';
 import config from './config.json';
 
 export type Unicode = typeof unicode;
-export const getSymbol = (title: keyof Unicode) => {
-  hexToUnicode(unicode[title]);
-};
+export const getSymbol = (title: keyof Unicode) => hexToUnicode(unicode[title]);
 
 const hexToUnicode = (hex: string) => String.fromCodePoint(parseInt(hex, 16));
 
