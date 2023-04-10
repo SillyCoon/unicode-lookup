@@ -1,13 +1,13 @@
 {
   "name": "unicode-lookup",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
   "type": "module",
   "scripts": {
     "pre-build": "mkdir -p ./lib; bun pre-build.ts",
     "prepublishOnly": "bun test && bun run build",
-    "build": "bun run pre-build; tsc ./index.ts --target esnext --moduleResolution bundler --resolveJsonModule --declaration --outDir ./lib",
+    "build": "bun run pre-build; tsc ./index.ts --target esnext --moduleResolution bundler --resolveJsonModule --declaration --module esnext --outDir ./lib",
     "test": "bun test"
   },
   "devDependencies": {

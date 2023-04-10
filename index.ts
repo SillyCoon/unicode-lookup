@@ -1,4 +1,4 @@
-import unicode from './unicode.json';
+import unicode from './unicode.json' assert { type: 'json' };
 
 export type Unicode = typeof unicode;
 export const getSymbolByTitle = (title: keyof Unicode) =>
