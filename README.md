@@ -1,15 +1,10 @@
 # Unicode-lookup
 
-To install dependencies:
+Simple typed function to get Unicode symbol by the title or the title itself if there is no such symbol.
 
-```bash
-bun install
+```typescript
+const symbol = getSymbolByTitle('GEAR'); // ⚙
+const noSuchSymbol = getSymbolByTitle('NO SYMBOL'); // NO SYMBOL
 ```
 
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v0.5.9. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+Supported Unicode version: 15
