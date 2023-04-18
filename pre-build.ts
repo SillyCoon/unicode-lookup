@@ -50,21 +50,26 @@ const splitByCategory = (
 const write = async (path: string, data: string) =>
   Bun.write(Bun.file(path), data);
 
+const writeCategory = async (category: string, data: Record<string, string>) =>
+  Promise.all([
+    write(`./unicode/${category}.json`, JSON.stringify(data)),
+    write(`./src/${category}.ts`, makeCategoryLookupFunction(category)),
+  ]);
+
 (async () => {
   const unicodeData = await Bun.file('./data/UnicodeData.txt').text();
   const parsedData = parse(unicodeData);
 
-  const dict = toDictionaryByTitle(parsedData);
-  const splittedByCategory = splitByCategory(parsedData);
+  const splittedByCategory = {
+    ...splitByCategory(parsedData),
+    Unicode: toDictionaryByTitle(parsedData),
+  };
   const categories = Object.keys(splittedByCategory);
 
   await Promise.all([
-    ...Object.entries(splittedByCategory).map(([category, data]) => {
-      return Promise.all([
-        write(`./unicode/${category}.json`, JSON.stringify(data)),
-        write(`./src/${category}.ts`, makeCategoryLookupFunction(category)),
-      ]);
-    }),
+    ...Object.entries(splittedByCategory).map(([category, data]) =>
+      writeCategory(category, data),
+    ),
     write(
       './src/index.ts',
       categories.map((c) => `export * from './${c}';`).join('\n'),
