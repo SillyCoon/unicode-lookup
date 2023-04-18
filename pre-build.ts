@@ -48,8 +48,8 @@ export const getSymbolFrom${category} = (title: keyof ${category}) => {
       ]);
     }),
     Bun.write(
-      Bun.file('./index.ts'),
-      categories.map((c) => `export * from './src/${c}';`).join('\n'),
+      Bun.file('./src/index.ts'),
+      categories.map((c) => `export * from './${c}';`).join('\n'),
     ),
   ]);
 })();

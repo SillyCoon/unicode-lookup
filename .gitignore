@@ -3,5 +3,4 @@ lib
 unicode
 src/*
 !src/utils.ts
-index.ts
 .DS_Store
