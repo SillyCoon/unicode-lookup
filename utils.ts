@@ -1,4 +1,4 @@
-export const getSymbolByTitle = (
+export const getSymbolFrom = (
   lookup: Record<string, string>,
   title: string,
 ): string => {
