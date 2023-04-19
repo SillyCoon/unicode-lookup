@@ -1,3 +1,7 @@
 node_modules
 lib
-unicode.json
+unicode
+src/*
+!src/utils.ts
+index.ts
+.DS_Store
