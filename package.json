@@ -1,13 +1,13 @@
 {
   "name": "unicode-lookup",
   "description": "Unicode title-symbol map",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
   "main": "lib/index.js",
   "type": "module",
   "scripts": {
-    "pre-build": "mkdir -p ./lib; bun pre-build.ts",
+    "pre-build": "mkdir -p ./unicode; mkdir -p ./src; bun pre-build.ts",
     "prepublishOnly": "bun test && bun run build",
     "build": "bun run pre-build; tsc ./index.ts --target esnext --moduleResolution bundler --resolveJsonModule --declaration --module esnext --outDir ./lib",
     "test": "bun test"
