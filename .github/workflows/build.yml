@@ -10,6 +10,6 @@ jobs:
       - uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
-      - run: bun ci
+      - run: bun install
       - run: bun build
       - run: bun test
