@@ -19,3 +19,13 @@ Use separate functions according to categories described in [UnicodeData](https:
 const symbol = getSymbolFromSo('GEAR'); // ⚙
 const noSuchSymbol = getSymbolFromSo('PLUS SIGN'); // PLUS SIGN
 ```
+
+## Lookup by several categories
+
+Use the `getSymbolFromCategories` function if you want to try to extract a symbol from several categories.
+
+```typescript
+const symbol = getSymbolFromCategories('GEAR', [Sm, So]); // ⚙
+const noSuchSymbol = getSymbolFromCategories('GEAR', [Sm, Pi]); // GEAR
+const emptyList = getSymbolFromCategories('GEAR', []); // GEAR
+```
