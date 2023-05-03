@@ -13,7 +13,7 @@ const makeCategoryLookupFunction = (category: string) =>
 `import ${category}Lookup from '../unicode/${category}.json' assert { type: 'json' };
 import { getSymbolFrom } from '../utils';
 
-${notUnicode(category) ? `export const ${category}Dict = ${category}Lookup;` : ''}
+${notUnicode(category) ? `export const ${category} = ${category}Lookup;` : ''}
 export type ${category} = typeof ${category}Lookup;
 export const getSymbolFrom${category} = (title: keyof ${category}) =>
   getSymbolFrom(${category}Lookup, title);
