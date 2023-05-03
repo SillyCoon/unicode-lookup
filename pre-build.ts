@@ -10,13 +10,13 @@ const notUnicode = (category: string) => category !== 'Unicode';
 // typescript can't generate types for entire Unicode dict
 // since it's too big, so we skip export of UnicodeLookup
 const makeCategoryLookupFunction = (category: string) =>
-`import ${category}Dict from '../unicode/${category}.json' assert { type: 'json' };
+`import ${category}Lookup from '../unicode/${category}.json' assert { type: 'json' };
 import { getSymbolFrom } from '../utils';
 
-${notUnicode(category) ? `export const ${category}Lookup = ${category}Dict;` : ''}
-export type ${category} = typeof ${category}Dict;
+${notUnicode(category) ? `export const ${category}Dict = ${category}Lookup;` : ''}
+export type ${category} = typeof ${category}Lookup;
 export const getSymbolFrom${category} = (title: keyof ${category}) =>
-  getSymbolFrom(${category}Dict, title);
+  getSymbolFrom(${category}Lookup, title);
 `;
 
 const makeCategoriesUnion = (categories: string[]) =>

@@ -1,9 +1,9 @@
 import { expect, test } from 'bun:test';
 import {
-  SmLookup,
+  SmDict,
   So,
-  SoLookup,
-  PiLookup,
+  SoDict,
+  PiDict,
   Unicode,
   getSymbolByTitle,
   getSymbolFromCategories,
@@ -27,12 +27,12 @@ test('returns title if there is no such symbol', () => {
 
 test('returns correct unicode symbol from several categories', () => {
   const symbol: keyof So = 'GEAR';
-  expect(getSymbolFromCategories(symbol, [SmLookup, SoLookup])).toBe('\u2699');
+  expect(getSymbolFromCategories(symbol, [SmDict, SoDict])).toBe('\u2699');
 });
 
 test('returns title if there is no such symbol in categories', () => {
   const symbol: keyof So = 'GEAR';
-  expect(getSymbolFromCategories(symbol, [SmLookup, PiLookup])).toBe(symbol);
+  expect(getSymbolFromCategories(symbol, [SmDict, PiDict])).toBe(symbol);
 });
 
 test('returns title if the categories list is empty', () => {
