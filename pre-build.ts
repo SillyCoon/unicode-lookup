@@ -4,15 +4,26 @@ interface UnicodeData {
   code: string;
 }
 
+const notUnicode = (category: string) => category !== 'Unicode';
+
 // prettier-ignore
+// typescript can't generate types for entire Unicode dict
+// since it's too big, so we skip export of UnicodeLookup
 const makeCategoryLookupFunction = (category: string) =>
-`import ${category}Dict from '../unicode/${category}.json' assert { type: 'json' };
+`import ${category}Lookup from '../unicode/${category}.json' assert { type: 'json' };
 import { getSymbolFrom } from '../utils';
 
-export type ${category} = typeof ${category}Dict;
-export const getSymbolFrom${category} = (title: keyof ${category}) => {
-  return getSymbolFrom(${category}Dict, title);
-}`;
+${notUnicode(category) ? `export const ${category} = ${category}Lookup;` : ''}
+export type ${category} = typeof ${category}Lookup;
+export const getSymbolFrom${category} = (title: keyof ${category}) =>
+  getSymbolFrom(${category}Lookup, title);
+`;
+
+const makeCategoriesUnion = (categories: string[]) =>
+  [
+    `import { ${categories.join(', ')} } from '.';`,
+    `export type CategoriesUnion = ${categories.join(' | ')}`,
+  ].join(`\n`);
 
 type Parsed = ReturnType<typeof parse>;
 
@@ -72,7 +83,14 @@ const writeCategory = async (category: string, data: Record<string, string>) =>
     ),
     write(
       './src/index.ts',
-      categories.map((c) => `export * from './${c}';`).join('\n'),
+      [...categories, 'CategoriesUnion']
+        .map((c) => `export * from './${c}';`)
+        .join('\n'),
     ),
   ]);
+
+  await write(
+    './src/CategoriesUnion.ts',
+    makeCategoriesUnion(categories.filter(notUnicode)),
+  );
 })();
