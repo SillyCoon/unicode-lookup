@@ -1,11 +1,11 @@
-import { CategoriesUnion } from './src';
+import { CategoriesUnion, Unicode } from './src';
 import { getSymbolFrom } from './utils';
 
 export * from './src';
 export { getSymbolFromUnicode as getSymbolByTitle } from './src';
 
 export const getSymbolFromCategories = (
-  title: string,
+  title: keyof Unicode,
   categories: CategoriesUnion[],
 ) => {
   for (const category of categories) {
