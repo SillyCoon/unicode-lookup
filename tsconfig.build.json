@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "declaration": true,
+    "module": "ESNext",
+    "outDir": "./lib",
+    "allowSyntheticDefaultImports": true
+  },
+  "files": ["./index.ts"]
+}
