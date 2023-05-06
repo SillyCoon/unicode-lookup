@@ -28,13 +28,16 @@ const makeCategoriesUnion = (categories: string[]) =>
 type Parsed = ReturnType<typeof parse>;
 
 const parse = (data: string) =>
-  data.split('\n').map((line) => {
+  data.split('\n').flatMap((line) => {
     const splitted = line.split(';');
-    return {
+    const parsed = {
       code: splitted[0],
       title: splitted[1],
       category: splitted[2],
     };
+    return parsed.title.includes('-')
+      ? [parsed, { ...parsed, title: parsed.title.replace('-', ' ') }]
+      : [parsed];
   });
 
 const toDictionaryByTitle = (parsedData: Parsed) => {
