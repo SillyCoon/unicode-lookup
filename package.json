@@ -1,7 +1,7 @@
 {
   "name": "unicode-lookup",
   "description": "Unicode title-symbol map",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
   "main": "lib/index.js",
