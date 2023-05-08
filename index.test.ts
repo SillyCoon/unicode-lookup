@@ -7,6 +7,8 @@ import {
   getSymbolFromCategories,
   getSymbolFromSo,
   Unicode,
+  Sc,
+  getSymbolFromSc,
 } from './index';
 
 test('returns correct unicode symbol', () => {
@@ -27,6 +29,16 @@ test('returns title if there is no such symbol', () => {
 test('returns correct unicode symbol from several categories', () => {
   const symbol: keyof So = 'GEAR';
   expect(getSymbolFromCategories(symbol, [Sm, So])).toBe('\u2699');
+});
+
+test('returns correct unicode symbol for title without dashes', () => {
+  const symbol: keyof Sc = 'EURO CURRENCY SIGN';
+  expect(getSymbolFromSc(symbol)).toBe('\u20A0');
+});
+
+test('returns correct unicode symbol for title with dashes', () => {
+  const symbol: keyof Sc = 'EURO-CURRENCY SIGN';
+  expect(getSymbolFromSc(symbol)).toBe('\u20A0');
 });
 
 test('returns title if there is no such symbol in categories', () => {
