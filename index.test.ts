@@ -14,6 +14,8 @@ import {
 test('returns correct unicode symbol', () => {
   const symbol: keyof Unicode = 'GEAR';
   expect(getSymbolByTitle(symbol)).toBe('\u2699');
+  // Symbol with dash
+  expect(getSymbolByTitle('Euro-Currency Sign')).toBe('\u20A0');
 });
 
 test('returns correct unicode symbol from category', () => {
